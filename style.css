@@ -1,0 +1,15 @@
+
+#header{
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    background-color: rgb(56, 57, 61);
+}
+#search-button{
+    background-color: blue;
+    color: white;
+}
+
+/* .h3{
+    text-align: center;
+} */
