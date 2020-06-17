@@ -78,7 +78,7 @@ $(document).ready(function () {
       searchInput +
       "&units=imperial&appid=" +
       apiKey;
-      console.log(fiveDayUrl);
+    console.log(fiveDayUrl);
     $.ajax({
       url: fiveDayUrl,
       method: "GET",
@@ -91,22 +91,51 @@ $(document).ready(function () {
       var dayOneTemp = response.list[0].main.temp;
       var dayOneHumidity = response.list[0].main.humidity;
       //Day Two Variables
-      var dayTwoDate = response.list[0].dt_txt;
-      var dayTwoTemp = response.list[0].main.temp;
-      var dayTwoHumidity = response.list[0].main.humidity;
+      var dayTwoDate = response.list[2].dt_txt;
+      var dayTwoTemp = response.list[2].main.temp;
+      var dayTwoHumidity = response.list[2].main.humidity;
       //Day Three Variables
-      var dayThreeDate = response.list[0].dt_txt;
-      var dayThreeTemp = response.list[0].main.temp;
-      var dayThreeHumidity = response.list[0].main.humidity;
+      var dayThreeDate = response.list[10].dt_txt;
+      var dayThreeTemp = response.list[10].main.temp;
+      var dayThreeHumidity = response.list[10].main.humidity;
       //Day Four Variables
-      var dayFourDate = response.list[0].dt_txt;
-      var dayFourTemp = response.list[0].main.temp;
-      var dayFourHumidity = response.list[0].main.humidity;
+      var dayFourDate = response.list[17].dt_txt;
+      var dayFourTemp = response.list[17].main.temp;
+      var dayFourHumidity = response.list[17].main.humidity;
       //Day Five Variables
-      var dayFiveDate = response.list[0].dt_txt;
-      var dayFiveTemp = response.list[0].main.temp;
-      var dayFiveHumidity = response.list[0].main.humidity;
-
+      var dayFiveDate = response.list[25].dt_txt;
+      var dayFiveTemp = response.list[25].main.temp;
+      var dayFiveHumidity = response.list[25].main.humidity;
+      //Day One Text
+      $("#day1-date").text(dayOneDate);
+      $("#day1-temp").text(
+        "Temp: " + dayOneTemp + String.fromCharCode(176) + "F"
+      );
+      $("day1-humidity").text("Humidity: " + dayOneHumidity + "%");
+      //Day Two Text
+      $("#day2-date").text(dayTwoDate);
+      $("#day2-temp").text(
+        "Temp: " + dayTwoTemp + String.fromCharCode(176) + "F"
+      );
+      $("day2-humidity").text("Humidity: " + dayTwoHumidity + "%");
+      //Day Three Text
+      $("#day3-date").text(dayThreeDate);
+      $("#day3-temp").text(
+        "Temp: " + dayThreeTemp + String.fromCharCode(176) + "F"
+      );
+      $("day3-humidity").text("Humidity: " + dayThreeHumidity + "%");
+      //Day Four Text
+      $("#day4-date").text(dayFourDate);
+      $("#day4-temp").text(
+        "Temp: " + dayFourTemp + String.fromCharCode(176) + "F"
+      );
+      $("day4-humidity").text("Humidity: " + dayFourHumidity + "%");
+      //Day Five Text
+      $("#day5-date").text(dayFiveDate);
+      $("#day5-temp").text(
+        "Temp: " + dayFiveTemp + String.fromCharCode(176) + "F"
+      );
+      $("day5-humidity").text("Humidity: " + dayFiveHumidity + "%");
 
       $;
     });
