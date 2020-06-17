@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="./style.css" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./script.js"></script>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" id="header">
+        <h1>Weather Dashboard</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <row>
+          <h3>Search for a City:</h3>
+          <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="text" aria-label="Search" id="search-input">
+              <button class="btn my-2 my-sm-0 text-white bg-primary" type="submit"
+                id="search-button">search</button>
+            </form>
+          </nav>
+        </row>
+        <row>
+          <p>
+          <ul id="#previous-search">
+          </ul>
+          </p>
+        </row>
+      </div>
+      <div class="col-md-9">
+        <row>
+          <h3 id="current-city">
+
+          </h3>
+          <p id="temperature"></p>
+          <p id="humidity"></p>
+          <p id="wind-speed"></p>
+          <p id="uv-index"></p>
+        </row>
+        <row>
+          <h3>
+            5-Day Forecast
+          </h3>
+          <row>
+            <div class="card-deck">
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Date</h5>
+                  <p class="card-text">Temp/Hum</p>
+                </div>
+              </div>
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Date</h5>
+                  <p class="card-text">Temp/Hum</p>
+                </div>
+              </div>
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Date</h5>
+                  <p class="card-text">Temp/Hum</p>
+                </div>
+              </div>
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Date</h5>
+                  <p class="card-text">Temp/Hum</p>
+                </div>
+              </div>
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Date</h5>
+                  <p class="card-text">Temp/Hum</p>
+                </div>
+              </div>
+            </div>
+          </row>
+      </div>
+    </div>
+    </row>
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</body>
+
+</html>
