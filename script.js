@@ -2,8 +2,7 @@ $(document).ready(function () {
   var currentDate = moment().format("L");
   var apiKey = "482946adea1a0b6915daedbe6e02b237";
 
-  //Local storange display on left side, not working
-  // var searchInput = $("#search-input").val().trim();
+  //Local storange display on left side, NOT WORKING
   var previouslySearchedCities = localStorage.getItem(
     $("#search-input").val().trim()
   );
@@ -11,31 +10,36 @@ $(document).ready(function () {
 
   //Search for city
   $("#search-button").on("click", function (event) {
+    //Clears Header w/ City name for new searches
     $("#current-city").empty();
+    //Attempt local storage.  Only saves on, replaces value with every new search
     event.preventDefault();
     var textValue = $(this).siblings("#search-input").val();
     var textKey = "City Searched";
     console.log(textKey, textValue);
     localStorage.setItem(textKey, textValue);
-    // This line of code will grab the input from the textbox
+
+    // Variable that will be used for queryURl so we can search for city
     var searchInput = $("#search-input").val().trim();
+    //Heading appended with current city and state.
+    //Attemp to capitalize first letter.
+    // searchInput.substr(0,1).toUpperCase()+searchInput.substr(1);
     $("#current-city")
       .append(searchInput)
       .append(" " + currentDate);
-    // $("#previous-search").addClass("<li>");
-    // $("#previous-search").append("#search-input");
 
-    //Current weather for city
+    //API query w/ city name variable inserted.
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       searchInput +
       "&units=imperial&appid=" +
       apiKey;
-
+    //AJAX for current weather
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
+      //Variables for current city weather and UV index.
       var tempEl = response.main.temp;
       var humidityEl = response.main.humidity;
       var windSpeedEl = response.wind.speed;
@@ -54,7 +58,7 @@ $(document).ready(function () {
         longEl +
         "&appid=" +
         apiKey;
-
+      //AJAX for UV index info, conditional for UV color badge
       $.ajax({
         url: uviURL,
         method: "GET",
@@ -70,7 +74,7 @@ $(document).ready(function () {
           $("#uv-index").addClass("badge badge-pill badge-warning");
         }
       });
-      //five day forcast in a loop
+      //Five Day API url
     });
 
     var fiveDayUrl =
@@ -78,14 +82,11 @@ $(document).ready(function () {
       searchInput +
       "&units=imperial&appid=" +
       apiKey;
-
+    //AJAX for five day forecast
     $.ajax({
       url: fiveDayUrl,
       method: "GET",
     }).then(function (response) {
-      //   console.log(response.list[0].dt_txt);
-      //   console.log(response.list[0].main.temp);
-      //   console.log(response.list[0].main.humidity);
 
       //Dates for Forecast Card Variables
       var dayOneDate = moment().format("L");
@@ -99,31 +100,36 @@ $(document).ready(function () {
       var dayOneTemp = response.list[0].main.temp;
       var dayOneHumidity = response.list[0].main.humidity;
       var dayOneIcon = response.list[0].weather[0].icon;
-      var dayOneIconURL = "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
+      var dayOneIconURL =
+        "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
       //Day Two Weather Variables
       // var dayTwoDate = response.list[2].dt_txt;
       var dayTwoTemp = response.list[2].main.temp;
       var dayTwoHumidity = response.list[2].main.humidity;
       var dayTwoIcon = response.list[2].weather[0].icon;
-      var dayTwoIconURL = "http://openweathermap.org/img/w/" + dayTwoIcon + ".png";
+      var dayTwoIconURL =
+        "http://openweathermap.org/img/w/" + dayTwoIcon + ".png";
       //Day Three Weather Variables
       // var dayThreeDate = response.list[10].dt_txt;
       var dayThreeTemp = response.list[10].main.temp;
       var dayThreeHumidity = response.list[10].main.humidity;
       var dayThreeIcon = response.list[10].weather[0].icon;
-      var dayThreeIconURL = "http://openweathermap.org/img/w/" + dayThreeIcon + ".png";
+      var dayThreeIconURL =
+        "http://openweathermap.org/img/w/" + dayThreeIcon + ".png";
       //Day Four Weather Variables
       // var dayFourDate = response.list[17].dt_txt;
       var dayFourTemp = response.list[17].main.temp;
       var dayFourHumidity = response.list[17].main.humidity;
       var dayFourIcon = response.list[17].weather[0].icon;
-      var dayFourIconURL = "http://openweathermap.org/img/w/" + dayFourIcon + ".png";
+      var dayFourIconURL =
+        "http://openweathermap.org/img/w/" + dayFourIcon + ".png";
       //Day Five Weather Variables
       // var dayFiveDate = response.list[25].dt_txt;
       var dayFiveTemp = response.list[25].main.temp;
       var dayFiveHumidity = response.list[25].main.humidity;
       var dayFiveIcon = response.list[25].weather[0].icon;
-      var dayFiveIconURL = "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
+      var dayFiveIconURL =
+        "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
       //Day One Text
       $("#day1-date").text(dayOneDate);
       $("#day-1-icon").attr("src", dayOneIconURL);
