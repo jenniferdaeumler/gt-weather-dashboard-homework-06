@@ -1,6 +1,6 @@
 # 06 Server-Side APIs: Weather Dashboard
-https://jenniferdaeumler.github.io/gt-calendar-homework-05/
-https://github.com/jenniferdaeumler/gt-calendar-homework-05
+https://jenniferdaeumler.github.io/gt-weather-dashboard-homework-06/
+https://github.com/jenniferdaeumler/gt-weather-dashboard-homework-06
 
 
 ## Table of Contents 
