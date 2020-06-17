@@ -1,31 +1,32 @@
 $(document).ready(function () {
-    
-var currentDate = moment().format("L");
-$("#current-city").append(currentDate);
-  function displayLocationCurrentWeather() {
+    var currentDate = moment().format("L");
+    var apiKey = "1935f5d7d75a269680ddfadd7b264dcb";
 
-    var queryURL =
-      "https://api.openweathermap.org/data/2.5/weather?q=Atlanta,Georgia&appid=9ac0eaae4cb7573a493c5ffeea19100f";
+    function displayLocationCurrentWeather() {
+        var queryURL =
+            "http://api.openweathermap.org/data/2.5/forecast?q=atlanta&units=imperial&appid=" +
+            apiKey;
 
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response.cod);
-    });
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
 
+        
+        })
+        displayLocationCurrentWeather();
+        //five day forcast in a loop
+    }
 
+      //     // //Search for city, display  by date
+      $("#search-button").on("click", function (event) {
+        $("#current-city").empty();
+        event.preventDefault();
+        console.log("submit button clicked");
+        // This line of code will grab the input from the textbox
+        var searchInput = $("#search-input").val().trim();
+        $("#current-city").append(searchInput).append(" " +currentDate);
 
-
-
-//     // //Search for city, display on screen
-//     // $("search-button").on("click", function (event) {
-//     //   event.preventDefault();
-//     //   // This line of code will grab the input from the textbox
-//     //   var cityName = $("#search-input").val().trim();
-//     //   console.log(cityName);
-//     // });
-  }
-  displayLocationCurrentWeather();
-  //five day forcast in a loop
+    })
 });
