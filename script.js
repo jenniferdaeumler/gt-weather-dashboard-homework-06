@@ -1,12 +1,12 @@
 $(document).ready(function () {
-  var currentDate = moment().format("L");
+  var currentDate = moment().format("(M/DD/YYYY)");
   var apiKey = "482946adea1a0b6915daedbe6e02b237";
 
   //Local storange display on left side, NOT WORKING
-  var previouslySearchedCities = localStorage.getItem(
-    $("#search-input").val().trim()
-  );
-  $("#previous-search").append(previouslySearchedCities);
+  var cityArray =
+    JSON.parse(localStorage.getItem("cityArray")) || [];
+  //FIX THIS
+    $("#previous-search").append(cityArray);
 
   //Search for city
   $("#search-button").on("click", function (event) {
@@ -14,20 +14,21 @@ $(document).ready(function () {
     $("#current-city").empty();
     //Attempt local storage.  Only saves on, replaces value with every new search
     event.preventDefault();
-    var textValue = $(this).siblings("#search-input").val();
-    var textKey = "City Searched";
-    console.log(textKey, textValue);
-    localStorage.setItem(textKey, textValue);
+
+    // console.log(textKey, textValue);
+    // localStorage.setItem(textKey, textValue);
 
     // Variable that will be used for queryURl so we can search for city
     var searchInput = $("#search-input").val().trim();
+    cityArray.unshift(searchInput);
+    localStorage.setItem("cityArray", JSON.stringify(cityArray));
     //Heading appended with current city and state.
     //Attemp to capitalize first letter.
     // searchInput.substr(0,1).toUpperCase()+searchInput.substr(1);
     $("#current-city")
       .append(searchInput)
       .append(" " + currentDate);
-
+    $("#previous-search").append(searchInput);
     //API query w/ city name variable inserted.
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -43,8 +44,12 @@ $(document).ready(function () {
       var tempEl = response.main.temp;
       var humidityEl = response.main.humidity;
       var windSpeedEl = response.wind.speed;
+      var searchedCityIconCode = response.weather[0].icon;
+      var searchedCityIconURL =
+        "http://openweathermap.org/img/w/" + searchedCityIconCode + ".png";
       var latEl = response.coord.lat;
       var longEl = response.coord.lon;
+      $("#searched-city-icon").attr("src", searchedCityIconURL);
       $("#temperature").text(
         "Temperature: " + Math.round(tempEl) + String.fromCharCode(176) + "F"
       );
@@ -87,7 +92,6 @@ $(document).ready(function () {
       url: fiveDayUrl,
       method: "GET",
     }).then(function (response) {
-
       //Dates for Forecast Card Variables
       var dayOneDate = moment().format("L");
       var dayTwoDate = moment().add(1, "day");
@@ -169,8 +173,6 @@ $(document).ready(function () {
         "Temp: " + dayFiveTemp + String.fromCharCode(176) + "F"
       );
       $("#day5-humidity").text("Humidity: " + dayFiveHumidity + "%");
-
-      $;
     });
   });
 });
