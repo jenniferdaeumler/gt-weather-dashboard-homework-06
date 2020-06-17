@@ -1,12 +1,23 @@
 $(document).ready(function () {
+//checking five day response
+    var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=atlanta&appid=482946adea1a0b6915daedbe6e02b237";
+    $.ajax({
+        url: fiveDayUrl,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response);
+    });
+
+
     var currentDate = moment().format("L");
-    var apiKey = "1935f5d7d75a269680ddfadd7b264dcb";
+    var apiKey = "482946adea1a0b6915daedbe6e02b237";
     var searchInput = $("#search-input").val().trim();
     var previouslySearchedCities = localStorage.getItem(
         $("#search-input").val().trim()
     );
     $("#previous-search").append(previouslySearchedCities);
 
+    //Search for city
     $("#search-button").on("click", function (event) {
         $("#current-city").empty();
         event.preventDefault();
@@ -21,11 +32,14 @@ $(document).ready(function () {
             .append(" " + currentDate);
         // $("#previous-search").addClass("<li>");
         // $("#previous-search").append("#search-input");
+       
+        //Current weather for city
         var queryURL =
             "https://api.openweathermap.org/data/2.5/weather?q=" +
             searchInput +
             "&units=imperial&appid=" +
             apiKey;
+console.log(queryURL);
 
         $.ajax({
             url: queryURL,
@@ -42,7 +56,7 @@ $(document).ready(function () {
             );
             $("#humidity").text("Humidity: " + humidityEl + "%");
             $("#wind-speed").text("Wind Speed: " + windSpeedEl + " MPH");
-
+//UV index URL and vars
             var uviURL =
                 "https://api.openweathermap.org/data/2.5/uvi?lat=" +
                 latEl +
@@ -56,6 +70,7 @@ $(document).ready(function () {
                 method: "GET",
             }).then(function (response) {
                 var uvIndexEl = response.value;
+                //UV value and color coordination badge. Does not work correctly.
                 $("#uv-index").text("UV Index: " + uvIndexEl)
                 if (uvIndexEl < 3) {
                     $("#uv-index").addClass("badge badge-pill badge-success")
@@ -72,5 +87,13 @@ $(document).ready(function () {
             });
             //five day forcast in a loop
         });
+
+        // var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=atlanta&appid=" +apiKey;
+        // $.ajax({
+        //     url: fiveDayUrl,
+        //     method: "GET",
+        // }).then(function (response) {
+        //     console.log("HI");
+        // });
     })
 });
