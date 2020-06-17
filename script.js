@@ -1,32 +1,43 @@
 $(document).ready(function () {
-    var currentDate = moment().format("L");
-    var apiKey = "1935f5d7d75a269680ddfadd7b264dcb";
+  var currentDate = moment().format("L");
+  var apiKey = "1935f5d7d75a269680ddfadd7b264dcb";
+  var searchInput = $("#search-input").val().trim();
+//   var tempEl = response.main.temp;
+//   var humidityEl = response.main.humidity;
+//   var windSpeedEl = response.wind.speed;
+  var previouslySearchedCities = localStorage.getItem(
+    $("#search-input").val().trim()
+  );
+  $("#previous-search").append(previouslySearchedCities);
 
-    function displayLocationCurrentWeather() {
-        var queryURL =
-            "http://api.openweathermap.org/data/2.5/forecast?q=atlanta&units=imperial&appid=" +
-            apiKey;
+  $("#search-button").on("click", function (event) {
+    $("#current-city").empty();
+    event.preventDefault();
+    var textValue = $(this).siblings("#search-input").val();
+    var textKey = "City Searched";
+    console.log(textKey, textValue);
+    localStorage.setItem(textKey, textValue);
+    // This line of code will grab the input from the textbox
+    var searchInput = $("#search-input").val().trim();
+    $("#current-city")
+      .append(searchInput)
+      .append(" " + currentDate);
+    // $("#previous-search").addClass("<li>");
+    // $("#previous-search").append("#search-input");
+    var queryURL =
+      "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&units=imperial&appid=" +
+      apiKey;
 
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-        }).then(function (response) {
-            console.log(response);
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+    //   console.log(response);
+      var tempEl = (response.main.temp);
+      $("#temperature").text("Temperature: " + tempEl);
+    });
+    //five day forcast in a loop
+  });
 
-        
-        })
-        displayLocationCurrentWeather();
-        //five day forcast in a loop
-    }
-
-      //     // //Search for city, display  by date
-      $("#search-button").on("click", function (event) {
-        $("#current-city").empty();
-        event.preventDefault();
-        console.log("submit button clicked");
-        // This line of code will grab the input from the textbox
-        var searchInput = $("#search-input").val().trim();
-        $("#current-city").append(searchInput).append(" " +currentDate);
-
-    })
+  
 });
