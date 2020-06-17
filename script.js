@@ -1,11 +1,13 @@
 $(document).ready(function () {
+  //Current Date using Moment
   var currentDate = moment().format("(M/DD/YYYY)");
+  //API key for ease of use 
   var apiKey = "482946adea1a0b6915daedbe6e02b237";
 
   //Local storange display on left side, NOT WORKING
   var cityArray = JSON.parse(localStorage.getItem("cityArray")) || [];
-  //FIX THIS
-  $("#previous-search").text(cityArray[0]);
+  //Why won't this display ? I even tried just putting a string in on like 8, and nothing appeared 
+  $("#previous-search").text(cityArray);
 
   function searchForCity() {
     //Search for city
