@@ -11,7 +11,9 @@ $(document).ready(function () {
 
     var currentDate = moment().format("L");
     var apiKey = "482946adea1a0b6915daedbe6e02b237";
-    var searchInput = $("#search-input").val().trim();
+    
+    //Local storange display on left side, not working
+    // var searchInput = $("#search-input").val().trim();
     var previouslySearchedCities = localStorage.getItem(
         $("#search-input").val().trim()
     );
@@ -70,7 +72,7 @@ console.log(queryURL);
                 method: "GET",
             }).then(function (response) {
                 var uvIndexEl = response.value;
-                //UV value and color coordination badge. Does not work correctly.
+                //UV value and color coordination badge. Works on refresh, not just new search
                 $("#uv-index").text("UV Index: " + uvIndexEl)
                 if (uvIndexEl < 3) {
                     $("#uv-index").addClass("badge badge-pill badge-success")
@@ -80,7 +82,6 @@ console.log(queryURL);
                     $("#uv-index").addClass("badge badge-pill badge-danger")
                 }
                 else {
-
                     $("#uv-index").addClass("badge badge-pill badge-warning")
                 }
 
@@ -88,12 +89,12 @@ console.log(queryURL);
             //five day forcast in a loop
         });
 
-        // var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=atlanta&appid=" +apiKey;
-        // $.ajax({
-        //     url: fiveDayUrl,
-        //     method: "GET",
-        // }).then(function (response) {
-        //     console.log("HI");
-        // });
+        var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=atlanta&appid=" +apiKey;
+        $.ajax({
+            url: fiveDayUrl,
+            method: "GET",
+        }).then(function (response) {
+            console.log("HI");
+        });
     })
 });
