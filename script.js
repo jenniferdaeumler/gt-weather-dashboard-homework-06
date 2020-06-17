@@ -78,7 +78,7 @@ $(document).ready(function () {
       searchInput +
       "&units=imperial&appid=" +
       apiKey;
-    console.log(fiveDayUrl);
+
     $.ajax({
       url: fiveDayUrl,
       method: "GET",
@@ -86,56 +86,83 @@ $(document).ready(function () {
       //   console.log(response.list[0].dt_txt);
       //   console.log(response.list[0].main.temp);
       //   console.log(response.list[0].main.humidity);
-      //Day One Variables
-      var dayOneDate = response.list[0].dt_txt;
+
+      //Dates for Forecast Card Variables
+      var dayOneDate = moment().format("L");
+      var dayTwoDate = moment().add(1, "day");
+      var dayThreeDate = moment().add(2, "day");
+      var dayFourDate = moment().add(3, "day");
+      var dayFiveDate = moment().add(4, "day");
+      var forecastDate = moment().format("M/D/YYYY");
+      //Day One Weather Variables
+      // var dayOneDate = response.list[0].dt_txt;
       var dayOneTemp = response.list[0].main.temp;
       var dayOneHumidity = response.list[0].main.humidity;
-      //Day Two Variables
-      var dayTwoDate = response.list[2].dt_txt;
+      var dayOneIcon = response.list[0].weather[0].icon;
+      var dayOneIconURL = "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
+      //Day Two Weather Variables
+      // var dayTwoDate = response.list[2].dt_txt;
       var dayTwoTemp = response.list[2].main.temp;
       var dayTwoHumidity = response.list[2].main.humidity;
-      //Day Three Variables
-      var dayThreeDate = response.list[10].dt_txt;
+      var dayTwoIcon = response.list[2].weather[0].icon;
+      var dayTwoIconURL = "http://openweathermap.org/img/w/" + dayTwoIcon + ".png";
+      //Day Three Weather Variables
+      // var dayThreeDate = response.list[10].dt_txt;
       var dayThreeTemp = response.list[10].main.temp;
       var dayThreeHumidity = response.list[10].main.humidity;
-      //Day Four Variables
-      var dayFourDate = response.list[17].dt_txt;
+      var dayThreeIcon = response.list[10].weather[0].icon;
+      var dayThreeIconURL = "http://openweathermap.org/img/w/" + dayThreeIcon + ".png";
+      //Day Four Weather Variables
+      // var dayFourDate = response.list[17].dt_txt;
       var dayFourTemp = response.list[17].main.temp;
       var dayFourHumidity = response.list[17].main.humidity;
-      //Day Five Variables
-      var dayFiveDate = response.list[25].dt_txt;
+      var dayFourIcon = response.list[17].weather[0].icon;
+      var dayFourIconURL = "http://openweathermap.org/img/w/" + dayFourIcon + ".png";
+      //Day Five Weather Variables
+      // var dayFiveDate = response.list[25].dt_txt;
       var dayFiveTemp = response.list[25].main.temp;
       var dayFiveHumidity = response.list[25].main.humidity;
+      var dayFiveIcon = response.list[25].weather[0].icon;
+      var dayFiveIconURL = "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
       //Day One Text
       $("#day1-date").text(dayOneDate);
+      $("#day-1-icon").attr("src", dayOneIconURL);
       $("#day1-temp").text(
         "Temp: " + dayOneTemp + String.fromCharCode(176) + "F"
       );
-      $("day1-humidity").text("Humidity: " + dayOneHumidity + "%");
+      $("#day1-humidity").text("Humidity: " + dayOneHumidity + "%");
+
       //Day Two Text
-      $("#day2-date").text(dayTwoDate);
+      $("#day2-date").text(dayTwoDate.format("M/D/YYYY"));
+      $("#day-2-icon").attr("src", dayTwoIconURL);
       $("#day2-temp").text(
         "Temp: " + dayTwoTemp + String.fromCharCode(176) + "F"
       );
-      $("day2-humidity").text("Humidity: " + dayTwoHumidity + "%");
+      $("#day2-humidity").text("Humidity: " + dayTwoHumidity + "%");
+
       //Day Three Text
-      $("#day3-date").text(dayThreeDate);
+      $("#day3-date").text(dayThreeDate.format("M/D/YYYY"));
+      $("#day-3-icon").attr("src", dayThreeIconURL);
       $("#day3-temp").text(
         "Temp: " + dayThreeTemp + String.fromCharCode(176) + "F"
       );
-      $("day3-humidity").text("Humidity: " + dayThreeHumidity + "%");
+      $("#day3-humidity").text("Humidity: " + dayThreeHumidity + "%");
+
       //Day Four Text
-      $("#day4-date").text(dayFourDate);
+      $("#day4-date").text(dayFourDate.format("M/D/YYYY"));
+      $("#day-4-icon").attr("src", dayFourIconURL);
       $("#day4-temp").text(
         "Temp: " + dayFourTemp + String.fromCharCode(176) + "F"
       );
-      $("day4-humidity").text("Humidity: " + dayFourHumidity + "%");
+      $("#day4-humidity").text("Humidity: " + dayFourHumidity + "%");
+
       //Day Five Text
-      $("#day5-date").text(dayFiveDate);
+      $("#day5-date").text(dayFiveDate.format("M/D/YYYY"));
+      $("#day-5-icon").attr("src", dayFiveIconURL);
       $("#day5-temp").text(
         "Temp: " + dayFiveTemp + String.fromCharCode(176) + "F"
       );
-      $("day5-humidity").text("Humidity: " + dayFiveHumidity + "%");
+      $("#day5-humidity").text("Humidity: " + dayFiveHumidity + "%");
 
       $;
     });
