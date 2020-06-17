@@ -74,36 +74,41 @@ $(document).ready(function () {
     });
 
     var fiveDayUrl =
-      "https://api.openweathermap.org/data/2.5/forecast?q=atlanta&units=imperial&appid=" +
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      searchInput +
+      "&units=imperial&appid=" +
       apiKey;
+      console.log(fiveDayUrl);
     $.ajax({
       url: fiveDayUrl,
       method: "GET",
     }).then(function (response) {
-    //   console.log(response.list[0].dt_txt);
-    //   console.log(response.list[0].main.temp);
-    //   console.log(response.list[0].main.humidity);
-    //Day One Variables
-      var dayOneDate =response.list[0].dt_txt;
+      //   console.log(response.list[0].dt_txt);
+      //   console.log(response.list[0].main.temp);
+      //   console.log(response.list[0].main.humidity);
+      //Day One Variables
+      var dayOneDate = response.list[0].dt_txt;
       var dayOneTemp = response.list[0].main.temp;
-      var dayOneHumidity =response.list[0].main.humidity;
-//Day Two Variables
-var dayTwoDate =response.list[0].dt_txt;
-var dayTwoTemp = response.list[0].main.temp;
-var dayTwoHumidity =response.list[0].main.humidity;
-//Day Three Variables
-var dayThreeDate =response.list[0].dt_txt;
-var dayThreeTemp = response.list[0].main.temp;
-var dayThreeHumidity =response.list[0].main.humidity;
-//Day Four Variables
-var dayFourDate =response.list[0].dt_txt;
-var dayFourTemp = response.list[0].main.temp;
-var dayFourHumidity =response.list[0].main.humidity;
-//Day Five Variables
-var dayFiveDate =response.list[0].dt_txt;
-var dayFiveTemp = response.list[0].main.temp;
-var dayFiveHumidity =response.list[0].main.humidity;
-      
+      var dayOneHumidity = response.list[0].main.humidity;
+      //Day Two Variables
+      var dayTwoDate = response.list[0].dt_txt;
+      var dayTwoTemp = response.list[0].main.temp;
+      var dayTwoHumidity = response.list[0].main.humidity;
+      //Day Three Variables
+      var dayThreeDate = response.list[0].dt_txt;
+      var dayThreeTemp = response.list[0].main.temp;
+      var dayThreeHumidity = response.list[0].main.humidity;
+      //Day Four Variables
+      var dayFourDate = response.list[0].dt_txt;
+      var dayFourTemp = response.list[0].main.temp;
+      var dayFourHumidity = response.list[0].main.humidity;
+      //Day Five Variables
+      var dayFiveDate = response.list[0].dt_txt;
+      var dayFiveTemp = response.list[0].main.temp;
+      var dayFiveHumidity = response.list[0].main.humidity;
+
+
+      $;
     });
   });
 });
