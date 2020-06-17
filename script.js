@@ -2,18 +2,17 @@ $(document).ready(function () {
     
 var currentDate = moment().format("L");
 $("#current-city").append(currentDate);
-//   function displayLocationCurrentWeather() {
+  function displayLocationCurrentWeather() {
 
+    var queryURL =
+      "https://api.openweathermap.org/data/2.5/weather?q=Atlanta,Georgia&appid=9ac0eaae4cb7573a493c5ffeea19100f";
 
-//     var queryURL =
-//       "https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=9ac0eaae4cb7573a493c5ffeea19100f";
-
-//     $.ajax({
-//       url: queryURL,
-//       method: "GET",
-//     }).then(function (response) {
-//       console.log(response);
-//     });
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response.cod);
+    });
 
 
 
@@ -26,7 +25,7 @@ $("#current-city").append(currentDate);
 //     //   var cityName = $("#search-input").val().trim();
 //     //   console.log(cityName);
 //     // });
-//   }
-//   displayLocationCurrentWeather();
+  }
+  displayLocationCurrentWeather();
   //five day forcast in a loop
 });
